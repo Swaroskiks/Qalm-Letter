@@ -1,0 +1,27 @@
+{
+  "name": "qalm-letter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Générateur automatisé de lettres de prospection AFNOR et conversion PDF par lots à partir de fichiers CSV sélectionnés.",
+  "scripts": {
+    "generate-letters": "ts-node src/generateLetters.ts",
+    "generate-pdfs": "ts-node src/batchPdf.ts",
+    "merge-pdfs": "ts-node src/mergeRouteBookPdfs.ts",
+    "merge-pdfs:alpha": "ts-node src/mergePdfs.ts",
+    "merge-route-book": "ts-node src/mergeRouteBookPdfs.ts",
+    "route-book": "ts-node src/generateRouteBook.ts",
+    "post-process:html": "ts-node src/postProcessHtml.ts",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

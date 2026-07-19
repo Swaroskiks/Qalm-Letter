@@ -1,0 +1,8 @@
+node_modules/
+dist/
+output/
+cache/
+lettres/
+scratch/
+.env
+.DS_Store

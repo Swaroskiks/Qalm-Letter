@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lettre Prospection QalmAI</title>
+  <style>
+    /* Configuration d'impression A4 stricte (Norme AFNOR NF Z 11-001) - Garantie 1 SEULE PAGE */
+    @page {
+      size: A4;
+      margin: 14mm 20mm 14mm 20mm;
+      /* Surface utile : 170mm de large x 269mm de haut */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, Calibri, sans-serif;
+      font-size: 10.5pt;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.45;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      /* Hauteur A4 fixe pour garantir le maintien sur 1 page */
+      max-height: 297mm;
+      margin: 0 auto;
+      padding: 14mm 20mm 14mm 20mm;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      /* Empêche tout débordement sur une 2ème page */
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+
+      .page {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        overflow: hidden;
+      }
+    }
+
+    /* --- ZONE D'EN-TÊTE AFNOR (Hauteur 70mm exactement) --- */
+    .top-header {
+      position: relative;
+      height: 70mm;
+      width: 100%;
+    }
+
+    /* BLOC EXPÉDITEUR À GAUCHE (Plus aéré et bien proportionné) */
+    .sender-block {
+      position: absolute;
+      top: 2mm;
+      left: 0;
+      width: 85mm;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4.5mm;
+      /* Respiration sous le logo */
+    }
+
+    .logo-icon {
+      color: #4f46e5;
+      width: 36px;
+      height: 36px;
+      margin-right: 9px;
+    }
+
+    .logo-text {
+      font-weight: 900;
+      font-size: 20pt;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .logo-sup {
+      font-size: 0.48em;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-left: 2px;
+      text-transform: uppercase;
+      transform: translateY(-0.6em);
+    }
+
+    .sender-details {
+      font-size: 10pt;
+      line-height: 1.55;
+      /* Interligne confortable pour ne pas faire serré */
+      color: #334155;
+    }
+
+    .sender-details strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* BLOC DESTINATAIRE AFNOR : FENÊTRE À DROITE (45x100mm sur DL)
+       Centrage géométrique absolu pour tolérance au glissement dans l'enveloppe DL :
+       top 29mm (soit 14+29 = 43mm absolus du haut de la feuille A4) -> reste visible même si la feuille glisse de +11mm au fond de l'enveloppe,
+       left 88mm (soit 20+88 = 108mm absolus du bord gauche du A4) -> reste visible même si la feuille bouge latéralement dans l'enveloppe */
+    .recipient-window {
+      position: absolute;
+      top: 29mm;
+      left: 88mm;
+      width: 82mm;
+      min-height: 36mm;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: #0f172a;
+      padding: 3mm 4mm;
+      background: #ffffff;
+    }
+
+    .recipient-window .recipient-name {
+      font-size: 11pt;
+      font-weight: 700;
+      margin-bottom: 1.5mm;
+      text-transform: uppercase;
+    }
+
+    .recipient-window .recipient-attention {
+      color: #334155;
+      margin-bottom: 1.5mm;
+    }
+
+    .recipient-window .recipient-address {
+      color: #0f172a;
+    }
+
+    /* --- OBJET (Bien séparé sous la zone fenêtre) --- */
+    .meta-block {
+      margin-top: 6mm;
+      margin-bottom: 6mm;
+    }
+
+    .subject-line {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* --- CORPS DE LETTRE (Distribution textuelle harmonieuse et équilibrée sur toute la page A4) --- */
+    .letter-body {
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1e293b;
+    }
+
+    .letter-body p {
+      margin-bottom: 4.5mm;
+      /* Équilibre parfait pour occuper la page sans sensation de vide ni de surcharge */
+      text-align: justify;
+    }
+
+    /* --- SIGNATURE --- */
+    .signature-block {
+      margin-top: 8mm;
+      font-size: 11pt;
+      line-height: 1.45;
+    }
+
+    .signature-name {
+      font-weight: 700;
+      color: #0f172a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="top-header">
+      <!-- 1. BLOC EXPÉDITEUR AÉRÉ (Haut Gauche) -->
+      <div class="sender-block">
+        <div class="logo-container">
+          <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4C11.163 4 4 11.163 4 20s7.163 16 16 16c3.5 0 6.745-1.125 9.38-3.035" stroke="currentColor"
+              stroke-width="3.5" stroke-linecap="round" />
+            <path d="M26 26L34 34" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+            <line x1="15" y1="16" x2="15" y2="24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <line x1="20" y1="13" x2="20" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <line x1="25" y1="15" x2="25" y2="25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <div class="logo-text">
+            <span>Qalm</span>
+            <sup class="logo-sup">AI</sup>
+          </div>
+        </div>
+        <div class="sender-details">
+          <strong>Qalm</strong><br />
+          24 boulevard Newton<br />
+          77420 Champs-sur-Marne<br />
+          <strong>07 56 91 75 69</strong><br />
+          contact@qalmai.fr
+        </div>
+      </div>
+
+      <!-- 2. BLOC DESTINATAIRE : ALIGNÉ EXACTEMENT SOUS LA FENÊTRE PLASTIQUE AFNOR -->
+      <div class="recipient-window">
+        <div class="recipient-name">{{NOM_ENTREPRISE_PROSPECT}}</div>
+        <div class="recipient-attention">À l'attention de : {{PRENOM_OU_DIRIGEANT_OU_DIRECTION}}</div>
+        <div class="recipient-address">
+          {{ADRESSE_RUE_PROSPECT}}<br />
+          <strong>{{CODE_POSTAL_ET_VILLE_PROSPECT}}</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. OBJET -->
+    <div class="meta-block">
+      <div class="subject-line">
+        {{OBJET_LETTRE}}
+      </div>
+    </div>
+
+    <!-- 4. CORPS DU TEXTE (Généré par l'IA) -->
+    <div class="letter-body">
+      {{LETTER_BODY_PARAGRAPHS}}
+    </div>
+
+    <div class="signature-block">
+      À très vite,<br />
+      <span class="signature-name">Mouad de Qalm</span>
+    </div>
+    <div style="margin-top:6mm;font-size:10.5pt;font-style:italic">P.S. Vous pouvez appeler à n'importe quelle heure, même un dimanche soir : vous aurez toujours quelqu'un au bout du fil.</div>
+  </div>
+</body>
+
+</html>
